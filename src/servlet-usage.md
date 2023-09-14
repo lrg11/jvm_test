@@ -180,3 +180,55 @@ public class HelloServlet extends HttpServlet {
    ```
 
 这只是一个基本的示例，实际使用中还可能涉及到更多的配置和设置，具体取决于你的应用程序需求和要部署的环境。你可以参考 Apache Tomcat 的官方文档以获取更详细的信息和指导。
+
+# spring
+
+我可以为您提供一个简单的Java项目示例，使用Spring Boot和Thymeleaf来创建一个基本的Web界面，展示随机生成的模拟性能指标数据。这个示例不包含实际的性能数据收集和数据库存储，仅仅是一个基本的演示。
+
+1. **创建Spring Boot项目：** 使用Spring Initializr创建一个Spring Boot项目，选择Web和Thymeleaf作为依赖。
+
+2. **创建控制器：** 创建一个控制器类，用于处理请求并渲染Thymeleaf模板。
+
+```java
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class PerformanceController {
+
+    @GetMapping("/")
+    public String showMetrics(Model model) {
+        // 在这里模拟获取性能指标数据
+        // 实际项目中，您需要从数据库或其他监控工具中获取真实的性能数据
+        double cpuUsage = Math.random() * 100;
+        double memoryUsage = Math.random() * 100;
+        
+        model.addAttribute("cpuUsage", cpuUsage);
+        model.addAttribute("memoryUsage", memoryUsage);
+        
+        return "metrics";
+    }
+}
+```
+
+3. **创建Thymeleaf模板：** 在`src/main/resources/templates`目录下创建名为`metrics.html`的Thymeleaf模板。
+
+```html
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Performance Metrics</title>
+</head>
+<body>
+    <h1>Performance Metrics</h1>
+    <p>CPU Usage: <span th:text="${cpuUsage}"></span>%</p>
+    <p>Memory Usage: <span th:text="${memoryUsage}"></span>%</p>
+</body>
+</html>
+```
+
+4. **运行项目：** 启动项目，访问`http://localhost:8080`，您将看到展示模拟的性能指标数据的Web界面。
+
+这个示例仅仅是一个简单的演示，实际项目中您需要根据需求使用真实的性能指标数据，并将其存储在数据库中。您还可以结合其他数据可视化工具，如Grafana，来更加丰富地展示性能指标数据。

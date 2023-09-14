@@ -15,6 +15,12 @@ public class CPUMetricsExample {
                     Integer sum = 0;
                     for(int i=1000; i<5000; i++){   sum+=i; }
                     System.out.println(sum);
+                    sum = 0;
+                    for(int i = 0; i < 100; i++) {
+                        if(i >= 10) sum +=2;
+                        else sum +=1;
+                    }
+                    System.out.println(sum);
                 }
             });
         }
